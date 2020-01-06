@@ -92,7 +92,7 @@ func (c *Config) HTMLdiff(versions []string) ([]string, error) {
 			go func(ch chan []diff.Change) {
 				ch <- diff.Diff(len(*sourceTreeRunes[0]), len(*sourceTreeRunes[m+1]), dd)
 			}(ch)
-			to := time.After(time.Second * 15)
+			to := time.After(time.Second * 60)
 			select {
 			case <-to:
 				parallelErrors <- errors.New("diff.Diff() took too long")
